@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const SALT = Number(process.env.SALT);
-const secret = process.env.SECRET_KEY;
 
 const resgister =async (req, res) =>{
     const { name, password, role} = req.body;
@@ -11,15 +10,15 @@ const resgister =async (req, res) =>{
     const savedName = name.toLowerCase();
     const savedPassword = await bcrypt.hash(password, SALT);
 
-    const newUser = new userModel({
-        name: savedName,
-        password: savedPassword,
-        role,
+    const newuser = new userModel({
+      name: savedName,
+      password: savedPassword,
+      role,
     });
     newuser
     .save()
     .then((result) =>{
-        res.status(200).json(result);
+        res.json(result);
     })
 .catch((err) =>{
     res.status(400).json(err);
@@ -38,6 +37,8 @@ const getUsers = (req, res) => {
 
   const login = (req, res) => {
       const {name, password} = req.body;
+      const SECRET_KEY = process.env.SECRET_KEY;
+
       const savedName = name.toLowerCase();
 
       userModel
@@ -50,7 +51,7 @@ const getUsers = (req, res) => {
             name,
           };
           if (savedPassword) {
-            let token = jwt.sign(payload, secret);
+            let token = jwt.sign(payload, SECRET_KEY);
             res.status(200).json({ result, token });
           } else {
             res.status(400).json("wrong name or password");
