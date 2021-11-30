@@ -10,7 +10,7 @@ const createRole = (req,res) => {
     newRole
     .save()
     .then((result) => {
-        res.status(200).json(result);
+        res.status(201).json(result);
     })
 .catch((err) => {
     res.status(400).json(err);
