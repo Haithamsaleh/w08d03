@@ -10,12 +10,12 @@ const resgister =async (req, res) =>{
     const savedName = name.toLowerCase();
     const savedPassword = await bcrypt.hash(password, SALT);
 
-    const newuser = new userModel({
+    const newUser = new userModel({
       name: savedName,
       password: savedPassword,
       role,
     });
-    newuser
+    newUser
     .save()
     .then((result) =>{
         res.json(result);
