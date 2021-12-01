@@ -11,11 +11,11 @@ const todoRouter = express.Router();
 const { authentication } = require("./../middleware/authentication");
 const { authorization } = require("./../middleware/authorization");
 
-taskRouter.post("/task", newTodos);
-taskRouter.get("/task/:id", getTodosById);
+todoRouter.post("/todo", newTodos);
+todoRouter.get("/todo/:id", getTodosById);
 
-taskRouter.get("/tasks", authentication, authorization, todos);
-taskRouter.get("/deltask", authentication, authorization, deltodo);
-taskRouter.delete("/delete/:id", authentication, authorization, deletedTodo);
-taskRouter.put("/task/:id", authentication, authorization, updateTodo);
+todoRouter.get("/todos", authentication, authorization, todos);
+todoRouter.get("/deltodo", authentication, authorization, deltodo);
+todoRouter.delete("/delete/:id", authentication, authorization, deletedTodo);
+todoRouter.put("/todo/:id", authentication, authorization, updateTodo);
 module.exports = todoRouter;
