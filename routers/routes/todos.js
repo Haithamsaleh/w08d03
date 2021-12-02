@@ -7,15 +7,17 @@ const{
   deletedTodo,
   updateTodo,
 } = require("./../controllers/todos")
-const todoRouter = express.Router();
-const { authentication } = require("./../middleware/authentication");
-const { authorization } = require("./../middleware/authorization");
+const todosRouter = express.Router();
+const  authentication  = require("./../middlewares/authentication");
+const  authorization  = require("./../middlewares/authorizathion");
 
-todoRouter.post("/todo", newTodos);
-todoRouter.get("/todo/:id", getTodosById);
+todosRouter.post("/todo", newTodos);
+todosRouter.get("/todo/:id", getTodosById);
 
-todoRouter.get("/todos", authentication, authorization, todos);
-todoRouter.get("/deltodo", authentication, authorization, deltodo);
-todoRouter.delete("/delete/:id", authentication, authorization, deletedTodo);
-todoRouter.put("/todo/:id", authentication, authorization, updateTodo);
-module.exports = todoRouter;
+todosRouter.get("/todos", todos);
+todosRouter.get("/deltodo", authentication, authorization, deltodo);
+todosRouter.delete("/delete/:id", authentication, authorization, deletedTodo);
+todosRouter.put("/todo/:id", authentication, authorization, updateTodo);
+
+
+module.exports = todosRouter;

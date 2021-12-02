@@ -14,7 +14,7 @@ const roleRouter = require("./routers/routes/role");
 app.use(roleRouter);
 const userRouter = require("./routers/routes/user")
 app.use(userRouter);
-const todoRouter = require("./routers/routes/user")
+const todoRouter = require("./routers/routes/todos")
 app.use(todoRouter);
 
 

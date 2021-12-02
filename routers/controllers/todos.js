@@ -30,8 +30,10 @@ const todos = (req, res) => {
       });
   };
   const deltodo = (req, res) => {
+    const { id } = req.params;
+
     todosModel
-    .find({})
+    .findOneAndUpdate({})
     .then((result) => {
     console.log(result);
     result.filter(item=>{
